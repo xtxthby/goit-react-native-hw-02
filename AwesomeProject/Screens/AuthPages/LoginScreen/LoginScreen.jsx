@@ -1,53 +1,22 @@
 import { useState } from 'react';
-import {
-  View,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-  TouchableWithoutFeedback,
+import { View, ImageBackground, TouchableOpacity,
+  TextInput, Text, KeyboardAvoidingView, Platform,
+  Keyboard, TouchableWithoutFeedback,
 } from 'react-native';
 
-import {
-  container,
-  bgContainer,
-  keyboardView,
-  contentWrapper,
-  title,
-  input,
-  inputLast,
-  passWrapper,
-  btnPassShow,
-  btnPassShowText,
-  btn,
-  btnText,
-  link,
-  linkText,
+import {  container,  bgContainer,  contentWrapper,  keyboardView,
+  title,  input,  inputLast,  passWrapper,  btnPassShow,
+  btnPassShowText,  btn,  btnText,  link,  linkText,
   linkTextUnderline,
 } from '../AuthPagesStyles';
-import {
-  avatarWrapper,
-  avatar,
-  btnAddAvatar,
-  btnAddAvatarLoad,
-  btnAddAvatarSvg,
-  btnAddAvatarSvgLoad,
-} from './RegistrationScreen.styled';
 import backgroundImg from '../../../assets/img/background.jpg';
-import SvgAddButton from '../../../assets/svg/SvgAddButton';
 
-const RegistrationScreen = () => {
+const LoginScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [isAvatar, setAvatar] = useState(false);
 
   const handleFocus = () => {
     setIsShowKeyboard(true);
   };
-
   const handleKeyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
@@ -57,21 +26,14 @@ const RegistrationScreen = () => {
     <TouchableWithoutFeedback onPress={handleKeyboardHide}>
       <View style={container}>
         <ImageBackground source={backgroundImg} style={bgContainer}>
-          <View style={{ ...contentWrapper, height: '67.61%' }}>
+          <View style={contentWrapper}>
             <KeyboardAvoidingView
               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
               style={keyboardView}
             >
-              <View style={avatarWrapper}>
-                <Image style={avatar} />
-                <TouchableOpacity style={isAvatar ? btnAddAvatarLoad : btnAddAvatar}>
-                  <SvgAddButton style={isAvatar ? btnAddAvatarSvgLoad : btnAddAvatarSvg} />
-                </TouchableOpacity>
-              </View>
-              <Text style={{ ...title, marginTop: 92 }}>Реєстрація</Text>
-              <TextInput style={input} placeholder="Логін" onFocus={handleFocus} />
+              <Text style={title}>Увійти</Text>
               <TextInput
-                style={input}
+                style={{ ...input }}
                 placeholder="Адреса електронної пошти"
                 onFocus={handleFocus}
               />
@@ -90,11 +52,11 @@ const RegistrationScreen = () => {
             {!isShowKeyboard && (
               <View>
                 <TouchableOpacity style={btn}>
-                  <Text style={btnText}>Зареєструватися</Text>
+                  <Text style={btnText}>Увійти</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={link}>
                   <Text style={linkText}>
-                    Вже є акаунт? <Text style={linkTextUnderline}>Увійти</Text>
+                    Немає акаунту? <Text style={linkTextUnderline}>Зареєструватися</Text>
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -106,4 +68,4 @@ const RegistrationScreen = () => {
   );
 };
 
-export default RegistrationScreen;
+export default LoginScreen;

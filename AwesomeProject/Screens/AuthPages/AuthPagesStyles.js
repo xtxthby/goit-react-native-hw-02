@@ -97,20 +97,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const {
-  container,
-  bgContainer,
-  keyboardView,
-  contentWrapper,
-  title,
-  input,
-  inputLast,
-  passWrapper,
-  btnPassShow,
-  btnPassShowText,
-  btn,
-  btnText,
-  link,
-  linkText,
-  linkTextUnderline,
+export const { container,  bgContainer,  keyboardView,  contentWrapper,
+  title,  input,  inputLast,  passWrapper,  btnPassShow,  btnPassShowText,
+  btn,  btnText,  link,  linkText,  linkTextUnderline,
 } = styles;

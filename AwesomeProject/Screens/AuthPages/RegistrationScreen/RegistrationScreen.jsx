@@ -1,59 +1,54 @@
-import { useEffect, useState } from 'react';
-import {
-  View,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-  TouchableWithoutFeedback,
+import { useState } from 'react';
+import {  View,  ImageBackground,  Image,  TouchableOpacity,
+  TextInput,  Text,  KeyboardAvoidingView,  Platform,
+  Keyboard,  TouchableWithoutFeedback,
 } from 'react-native';
 
-import {
-  container,
-  bgContainer,
-  contentWrapper,
-  keyboardView,
-  title,
-  input,
-  inputLast,
-  passWrapper,
-  btnPassShow,
-  btnPassShowText,
-  btn,
-  btnText,
-  link,
-  linkText,
+import {  container,  bgContainer,  keyboardView,  contentWrapper,
+  title,  input,  inputLast,  passWrapper,  btnPassShow,
+  btnPassShowText,  btn,  btnText,  link,  linkText,
   linkTextUnderline,
 } from '../AuthPagesStyles';
+import {  avatarWrapper,  avatar,  btnAddAvatar,  btnAddAvatarLoad,
+  btnAddAvatarSvg,  btnAddAvatarSvgLoad,
+} from './RegistrationScreen.styled';
 import backgroundImg from '../../../assets/img/background.jpg';
+import SvgAddButton from '../../../assets/svg/SvgAddButton';
 
-const LoginScreen = () => {
+const RegistrationScreen = () => {
+  
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [isAvatar, setAvatar] = useState(false);
 
   const handleFocus = () => {
     setIsShowKeyboard(true);
   };
+
   const handleKeyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
 
+
   return (
     <TouchableWithoutFeedback onPress={handleKeyboardHide}>
       <View style={container}>
         <ImageBackground source={backgroundImg} style={bgContainer}>
-          <View style={contentWrapper}>
+          <View style={{ ...contentWrapper, height: '75%' }}>
             <KeyboardAvoidingView
               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
               style={keyboardView}
             >
-              <Text style={title}>Увійти</Text>
+              <View style={avatarWrapper}>
+                <Image style={avatar} />
+                <TouchableOpacity style={isAvatar ? btnAddAvatarLoad : btnAddAvatar}>
+                  <SvgAddButton style={isAvatar ? btnAddAvatarSvgLoad : btnAddAvatarSvg} />
+                </TouchableOpacity>
+              </View>
+              <Text style={{ ...title, marginTop: 92 }}>Реєстрація</Text>
+              <TextInput style={input} placeholder="Логін" onFocus={handleFocus} />
               <TextInput
-                style={{ ...input }}
+                style={input}
                 placeholder="Адреса електронної пошти"
                 onFocus={handleFocus}
               />
@@ -72,11 +67,11 @@ const LoginScreen = () => {
             {!isShowKeyboard && (
               <View>
                 <TouchableOpacity style={btn}>
-                  <Text style={btnText}>Увійти</Text>
+                  <Text style={btnText}>Зареєструватися</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={link}>
                   <Text style={linkText}>
-                    Немає акаунту? <Text style={linkTextUnderline}>Зареєструватися</Text>
+                    Вже є акаунт? <Text style={linkTextUnderline}>Увійти</Text>
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -88,4 +83,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegistrationScreen;
